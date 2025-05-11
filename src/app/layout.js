@@ -1,6 +1,10 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-
+import { ThemeProvider } from "@/components/ui/theme-provider";
+import { ModeToggle } from "@/components/ui/mode";
+import { Providers } from "./RTK/Provider";
+import Sidebar from "./component/Sidebar";
+import RestrictSidebar from "./RestrictSideBar/page";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -22,8 +26,15 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
-      </body>
+        <Providers>
+          {/* <ThemeProvider> */}
+            <RestrictSidebar>
+              <div>
+
+                <main >{children}</main>
+              </div></RestrictSidebar>
+          {/* </ThemeProvider> */}
+        </Providers></body>
     </html>
   );
 }
